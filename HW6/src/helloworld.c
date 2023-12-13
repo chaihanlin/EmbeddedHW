@@ -21,24 +21,23 @@
 #include "xil_types.h"
 #include "xil_io.h"
 
-
-#define TX_FIFO    0x108
-#define i2cAddr    0x4b
-#define rxSize     2
-#define CR         0x100
-#define RX_FIFO   0x10C
-
 #define IIC_Base_Addr   0x40800000
+
+#define i2cAddr 0x4b
+#define rxSize  2
+#define CR      0x100
+#define TX_FIFO 0x108
+#define RX_FIFO 0x10C
+
+void AXI_IIC_Config();
 
 int main()
 {
     init_platform();
 
     unsigned int rxBuffer;
-    
+
     AXI_IIC_Config();
-
-
 
 	Xil_Out32((IIC_Base_Addr + TX_FIFO), (0x100 | (i2cAddr<<1 )));
 	Xil_Out32((IIC_Base_Addr + TX_FIFO), 0x0B);
